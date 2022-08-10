@@ -17,37 +17,11 @@ function solution(N) {
         return 1;
     }
 
-    let counter = 2;
-    let i = 2;
-    let len = N;
-    let dividable = false;
-
-    while (i < len) {
-
+    let counter = 0;
+    for (let i = 1; i <= N; i++) {
         if (N % i === 0) {
-
-            dividable = true;
-
-            let result = N / i;
-
-            if (result === i) {
-                counter += 1;
-            } else {
-                counter += 2;
-            }
-
-            len = result;
-
+            counter++;
         }
-        else {
-
-            if (!dividable) {
-                len = Math.floor(N / i);
-            }
-            
-        }
-
-        i++;
     }
 
     return counter;
@@ -56,28 +30,28 @@ function solution(N) {
 
 
 
-// test(780291637)
+test(780291637)
 // 2
 
-// test(1);
+test(1);
 // // 1
 
-// test(7);
+test(7);
 // // 2
 
-// test(24);
+test(24);
 // 8
 
-// test(19);
+test(19);
 // 2
 
 test(1111);
 // 4
 
-// test(4);
+test(4);
 // 3
 
-// test(42);
+test(42);
 // 8
 
 
