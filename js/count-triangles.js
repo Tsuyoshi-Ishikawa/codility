@@ -8,58 +8,18 @@
 */
 
 function solution(A) {
-
-    let i = 0;
-    let len = A.length;
-    let arr = [];
-
-    let results = [];
     let count = 0;
+    A.sort((a, b) => b - a); // 降順に変更
 
-    while (i < (len - 2)) {
-
-        console.log(i)
-
-        arr[0] = i;
-
-        let j = i + 1;
-        while (j < len) {
-
-            console.log(j, ' j........ ')
-            arr[1] = j;
-
-
-            console.log('arr: ', arr)
-
-            let y = j + 1;
-
-            while (y < len) {
-
-                arr[2] = y;
-
-                if (
-                    ((arr[0] + arr[1]) > arr[2]) &&
-                    ((arr[1] + arr[2]) > arr[0]) &&
-                    ((arr[2] + arr[0]) > arr[1])
-                ) {
-                    results.push([i, j, y]);
-                    count++;
-                }
-
-                console.log('y: ', y, arr)
-                y++;
+    for (i of A) {
+        for (let y = 1; y < A.length - i - 1; y++) {
+            if (A[i] < A[y] + A[y + 1]) {
+                count++;
+            } else {
+                break;
             }
-
-            j++;
-
         }
-
-
-        i++;
     }
-
-    console.log('result', results);
-
     return count;
 }
 
