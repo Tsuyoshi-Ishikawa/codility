@@ -8,31 +8,16 @@
 */
 
 function solution(N, M) {
-
-    let i = 0;
-    let count = 1;
-
-    if (N % M === 0) {
-        return N / M;
-    }
-
-    while (i !== -1) {
-
-        i = i + M;
-
-        if (i >= N) {
-            i = i % N;
-
-            if (i === 0) {
-                return count;
-            }
-        }
-
+    const eatenChoco = {};
+    let position = 0;
+    let count = 0;
+    
+    while (eatenChoco[position] !== true) {
+        eatenChoco[position] = true;
+        position = (position + M) % N;
         count++;
-
     }
-
-    return 1;
+    return count;
 }
 
 
