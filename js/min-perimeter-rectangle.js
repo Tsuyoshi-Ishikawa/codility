@@ -10,44 +10,23 @@ console.log('Min Perimeter Rectangle');
 
 function solution(N) {
 
-    let i = 2;
-    let len = N;
-    let dividable = false;
-    let total = N + 1;
-    // let arr = [];
-
-    while (i < len) {
-
+    let minDiff = 1000000000;
+    let height = 1;
+    let width = 1;
+    for (let i = 1; i <= N; i++) {
         if (N % i === 0) {
-
-            dividable = true;
-
-            let result = N / i;
-
-            len = result;
-
-            // arr.push([i, result]);
-
-            total = Math.min(total, i + result);
-
-        }
-        else {
-
-            if (!dividable) {
-                len = Math.floor(N / i);
+            const y = N / i;
+            const abs = Math.abs(y - i);
+            if (abs < minDiff) {
+                minDiff = abs;
+                height = y;
+                width = i;
             }
-
-            console.log('len', len)
-            
         }
-
-        i++;
     }
 
-    // console.log('sorted:', sorted)
+    return ( height + width) * 2;
 
-    // console.log('arr:', arr)
-    return total * 2;
 }
 
 
