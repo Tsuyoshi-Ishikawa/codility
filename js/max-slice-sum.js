@@ -58,12 +58,22 @@ function solution(A) {
     return total;
 }
 
+function test(...params) {
+    console.log('\n(', ...params, ')\n');
+    console.log('\n=>', solution(...params), '\n\n');
+}
 
 
 test([3, 2, -6, 4, 0]);
 // 5
 
+test([3, 2, -6, 4, 10]);
+// 14
+
 test([-10]);
+// -10
+
+test([-10, -11]);
 // -10
 
 // test([1, 1, -2])
@@ -77,8 +87,42 @@ test([-10]);
 // 1
 
 
+// 最終的な返り値が必ず正の数になる場合はこれも使える。
+function solution_v2(A) {
+    let sum = 0;
+    let total = 0;
+    let i = 0;
 
-function test(...params) {
-    console.log('\n(', ...params, ')\n');
-    console.log('\n=>', solution(...params), '\n\n');
+    while (i < A.length) {
+        let temp = sum + A[i];
+        if (A[i] < temp) {
+            sum = temp;
+        } else {
+            sum = A[i];
+        }
+
+        if (total < sum) {
+            total = sum;
+        }
+        i++;
+    }
+
+    return total;
 }
+
+function test_v2(...params) {
+    console.log('\n(', ...params, ')\n');
+    console.log('\n=>', solution_v2(...params), '\n\n');
+}
+
+test_v2([3, 2, -6, 4, 0]);
+// 5
+
+test_v2([3, 2, -6, 4, 10]);
+// 14
+
+test_v2([-10]);
+// -10ではなく0になってしまう
+
+test_v2([-10, -11]);
+// -10ではなく0になってしまう
